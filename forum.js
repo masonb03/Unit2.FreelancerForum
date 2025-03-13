@@ -30,6 +30,10 @@ function init() {
     h2.innerHTML = "Avaliable Freelancers";
     root.append(h2);
 
+    const anveragePrice = document.createElement("p");
+    anveragePrice.id = "averagePrice";
+    root.append(anveragePrice);
+
 
     /**
      * Step 3:Create a container div to hold freelancer data
@@ -74,6 +78,16 @@ function renderFreelance(){
 
         container.append(freelancerDiv);
     });
+
+    updateAveragePrice();
+}
+
+function updateAveragePrice(){
+    const totalPrice = freelancers.reduce((sum, freelancer) => sum + freelancer.starting, 0);
+    const averagePrice = (totalPrice / freelancers.length).toFixed(2);
+
+    const averagePriceElement = document.querySelector("#averagePrice");
+    averagePriceElement.innerHTML = `The average starting price is ${averagePrice}`
 }
 
 //call the function init
